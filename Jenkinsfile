@@ -24,14 +24,15 @@ pipeline{
             def warFile = "target/works-with-heroku-1.0.war"  // WAR file path
             def tomcatPath = "/opt/tomcat/apache-tomcat-9.0.98/webapps"  // Tomcat webapps directory
 
-            // Ensure the WAR file exists before copying
-            sh "ls -lh target/works-with-heroku-1.0.war"
+             // Stop Tomcat manually
+                    sh "sh /opt/tomcat/apache-tomcat-9.0.98/bin/shutdown.sh || true"
 
-            // Copy WAR file to Tomcat's webapps directory
-            sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
+                    // Deploy WAR file
+                    sh "cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
-            // Restart Tomcat
-            sh "sudo systemctl restart tomcat"
+                    // Start Tomcat manually
+                    sh "sh /opt/tomcat/apache-tomcat-9.0.98/bin/startup.sh"
+
               }
             }
         }
