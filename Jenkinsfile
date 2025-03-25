@@ -28,7 +28,7 @@ pipeline{
             sh "ls -lh target/works-with-heroku-1.0.war"
 
             // Copy WAR file to Tomcat's webapps directory
-            sh "cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
+            sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
             // Restart Tomcat
             sh "sudo systemctl restart tomcat"
