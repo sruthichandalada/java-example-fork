@@ -18,21 +18,20 @@ pipeline{
                 }
             }
         } 
-           stage('Deploy to Remote Tomcat') {
-           agent {label 'tomcat'}
-            steps {
-                script {
-                    def warFile = "target/works-with-heroku-1.0.war"
-                    def tomcatUser = "root"  // Use Jenkins user if configured
-                    def tomcatHost = "13.235.254.146"   // Remote agent hostname (or IP)
-                    def tomcatPath = "/opt/tomcat/apache-tomcat-9.0.98/webapps"
+           stage('Deploy to Tomcat') {
+        steps {
+        script {
+            def warFile = "target/works-with-heroku-1.0.war"  // WAR file path
+            def tomcatPath = "/opt/tomcat/apache-tomcat-9.0.98/webapps"  // Tomcat webapps directory
 
-                    // Copy WAR file to remote Tomcat server
-                    sh "sudo scp target/works-with-heroku-1.0.war root@13.235.254.146:/opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
+            // Ensure the WAR file exists before copying
+            sh "ls -lh target/works-with-heroku-1.0.war"
 
-                    // Restart Tomcat on remote server
-                    sh "ssh root@13.235.254.146 '/opt/tomcat/apache-tomcat-9.0.98/bin/shutdown.sh || true'"
-                    sh "ssh root@13.235.254.146 '/opt/tomcat/apache-tomcat-9.0.98/bin/startup.sh'"
+            // Copy WAR file to Tomcat's webapps directory
+            sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
+
+            // Restart Tomcat
+            sh "sudo systemctl restart tomcat"
 
               }
             }
