@@ -27,7 +27,7 @@ pipeline{
                  def tomcatPath = "/opt/tomcat/apache-tomcat-9.0.98/webapps"  // Path to Tomcat's webapps directory
 
               // Copy WAR file to Tomcat server
-              sh "scp target/works-with-heroku-1.0.war root@3.110.135.141:/opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
+              sh "cp target/works-with-heroku-1.0.war root@3.110.135.141:/opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
               // Restart Tomcat to deploy new version
               sh "ssh root@3.110.135.141 'sudo systemctl restart tomcat'"
