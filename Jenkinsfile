@@ -28,7 +28,7 @@ pipeline{
                     sh "sh /opt/tomcat/apache-tomcat-9.0.98/bin/shutdown.sh || true"
 
                     // Deploy WAR file
-                    sh "cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
+                    sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
                     // Start Tomcat manually
                     sh "sh /opt/tomcat/apache-tomcat-9.0.98/bin/startup.sh"
