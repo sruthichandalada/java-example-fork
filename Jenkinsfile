@@ -1,6 +1,6 @@
 pipeline{
-    agent {label 'build'}
-    options { skipDefaultCheckout() }  // Prevent Jenkins from using @tmp workspace
+    agent {label 'tomcat'}
+   // options { skipDefaultCheckout() }  // Prevent Jenkins from using @tmp workspace
     stages{
        stage('Git Checkout Stage'){
             steps{
@@ -23,7 +23,7 @@ pipeline{
             sh "ls -lh target/works-with-heroku-1.0.war"
 
             // Copy WAR file to Tomcat's webapps directory
-            sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps"
+            sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
             // Restart Tomcat
             sh "sudo systemctl restart tomcat"
