@@ -26,7 +26,7 @@ pipeline{
             sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
             // Restart Tomcat
-            sh "sudo systemctl restart tomcat"
+            //sh "sudo systemctl restart tomcat"
 
               }
             }
