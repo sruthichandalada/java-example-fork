@@ -1,5 +1,6 @@
 pipeline{
     agent {label 'build'}
+    options { skipDefaultCheckout() }  // Prevent Jenkins from using @tmp workspace
     stages{
        stage('Git Checkout Stage'){
             steps{
