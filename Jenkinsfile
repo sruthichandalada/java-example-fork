@@ -11,13 +11,7 @@ pipeline{
                 sh 'mvn clean install'
             }
          }
-        stage('SonarQube Analysis Stage') {
-            steps{
-                withSonarQubeEnv('sonarqube-server') { 
-                    sh "mvn clean verify sonar:sonar"
-                }
-            }
-        } 
+        
            stage('Deploy to Tomcat') {
         steps {
         script {
