@@ -1,6 +1,6 @@
 pipeline{
     agent {label 'tomcat'}
-   // options { skipDefaultCheckout() }  // Prevent Jenkins from using @tmp workspace
+   
     stages{
        stage('Git Checkout Stage'){
             steps{
@@ -12,7 +12,14 @@ pipeline{
                 sh 'mvn clean install'
             }
          }
-        
+         //stage('SonarQube Analysis Stage') {
+         //  steps{
+         //       withSonarQubeEnv('sonarqube-server') { 
+         //           sh "mvn clean verify sonar:sonar"
+         //       }
+         //   }
+        // } 
+
        stage('Deploy to Tomcat') {
         steps {
         script {
