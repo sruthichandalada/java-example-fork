@@ -13,7 +13,7 @@ pipeline{
             }
          }
         
-           stage('Deploy to Tomcat') {
+       stage('Deploy to Tomcat') {
         steps {
         script {
             def warFile = "target/works-with-heroku-1.0.war"  // WAR file path
@@ -25,10 +25,7 @@ pipeline{
             // Copy WAR file to Tomcat's webapps directory
             sh "sudo cp target/works-with-heroku-1.0.war /opt/tomcat/apache-tomcat-9.0.98/webapps/works-with-heroku-1.0.war"
 
-            // Restart Tomcat
-            //sh "sudo systemctl restart tomcat"
-
-              }
+                 }
             }
         }
     }
